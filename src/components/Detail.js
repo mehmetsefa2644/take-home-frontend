@@ -57,7 +57,7 @@ class Detail extends Component {
                             title={item.product_name}
                             description={'$' + item.fare}
                         />
-                        {item.status} at {item.time}
+                        {item.status} {item.time ? 'at ' + item.time : ''}
                     </List.Item>
                 )}
             />
