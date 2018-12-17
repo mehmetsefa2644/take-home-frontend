@@ -27,6 +27,11 @@ class Detail extends Component {
         }
     };
 
+    toUSD(cents) {
+        var dollars = cents / 100;
+        return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
+    }
+
     componentDidMount() {
         API.get('detail/' + this.props.match.params.id)
             .then(res => {
@@ -55,7 +60,7 @@ class Detail extends Component {
                     <List.Item>
                         <List.Item.Meta
                             title={item.product_name}
-                            description={'$' + item.fare}
+                            description={this.toUSD(item.fare)}
                         />
                         {item.status} {item.time ? 'at ' + item.time : ''}
                     </List.Item>

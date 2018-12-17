@@ -11,6 +11,11 @@ class Accounts extends Component {
         }
     }
 
+    toUSD(cents) {
+        var dollars = cents / 100;
+        return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
+    }
+
     componentDidMount() {
         API.get('accounts')
             .then(res => {
@@ -32,7 +37,7 @@ class Accounts extends Component {
                                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                                 }
                                 title={item.name}
-                                description={'Today: $' + item.today + ', This Week: $' + item.this_week + ', This Month: $' + item.this_month}
+                                description={'Today: ' + this.toUSD(item.today) + ', This Week: ' + this.toUSD(item.this_week) + ', This Month: ' + this.toUSD(item.this_month)}
                             />
                         </Link>
                     </List.Item>
